@@ -19,8 +19,8 @@ class CreateBooksTable extends Migration
             $table->string('author');
             $table->string('description');
             $table->string('cover');
-            $table->string('password');
             $table->date('publishDate');
+
             $table->rememberToken();
             $table->timestamps();
         });

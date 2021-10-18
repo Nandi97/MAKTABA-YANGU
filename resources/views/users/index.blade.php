@@ -7,16 +7,16 @@
     items-center pt-3 pb-2 mb-3 border-b">
     <ul class="list-reset flex flex-row">
         <li class="mr-3">
-            <a class="inline-block border border-blue-400 rounded py-1 px-3 bg-blue text-blue-500" aria-current="page"
+            <a class="inline-block border border-blue-400 rounded py-1 px-3 bg-blue-400 text-black hover:shadow-lg" aria-current="page"
                 href="users">Users</a>
         </li>
         <li class="mr-3">
-            <a class="inline-block border border-blue-400 rounded hover:border-grey-lighter text-blue hover:bg-grey-lighter py-1 px-3" href="">Roles</a>
+            <a class="inline-block border border-blue-400 rounded hover:border-grey-lighter text-blue hover:shadow-lg hover:bg-blue-700 py-1 px-3" href="\roles">Roles</a>
         </li>
     </ul>
-<button class="border-blue-500 hover:bg-blue-700">
+<button class="inline-block border rounded py-1 px-3 border-blue-500 hover:bg-blue-700">
     <a href="create">
-        <i class="bi bi-plus"></i>
+        <i></i>
         Add User
     </a>
 </button>

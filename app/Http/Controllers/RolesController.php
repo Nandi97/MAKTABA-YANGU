@@ -14,7 +14,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Roles';
+
+        return view('roles/index', compact(['title']));
     }
 
     /**

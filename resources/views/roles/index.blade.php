@@ -1,20 +1,20 @@
 @extends('layouts.main')
 
-@section('title', 'Users')
+@section('title', 'Roles')
 
 @section('content')
 
-<div class="flex justify-between flex-wrap md:flex-nowrap items-center pt-3 pb-2
-    mb-3 border-b">
-    <ul class="rounded-full py-3 px-6">
-        <li>
-            <a href="../users/">Users</a>
+<div class="flex justify-between flex-wrap md:flex-nowrap
+items-center pt-3 pb-2 mb-3 border-b">
+    <ul class="list-reset flex flex-row">
+        <li class="mr-3">
+            <a class="inline-block border border-blue-400 rounded hover:border-grey-lighter text-blue hover:shadow-lg hover:bg-blue-700 py-1 px-3" href="../users/">Users</a>
         </li>
-        <li>
-            <a class="active" aria-current="page" href="../roles/">Roles</a>
+        <li class="mr-3">
+            <a class="inline-block border border-blue-400 rounded py-1 px-3 bg-blue-400 text-black hover:shadow-lg" class="active" aria-current="page" href="../roles/">Roles</a>
         </li>
     </ul>
-    <button class="bg-white border-blue-700">
+    <button class="inline-block border rounded py-1 px-3 border-blue-500 hover:bg-blue-700">
         <a href="../roles/create.blade.php">
             <i></i>
             Add Role
@@ -33,36 +33,21 @@
     </thead>
 
     <tbody>
-        <?php
-            $sql="SELECT * FROM roles" ;
-            $result= $db->query($sql);
-            $counter = 0;
-            if ($result->rowCount() > 0) {
-            while ($row = $result->fetch()) {
-            $counter++;
-            ?>
+
             <tr>
-                <td><?php echo $counter; ?></td>
-                    <td><?php echo $row['name']; ?></td>
-                        <td><?php echo $row['description']; ?></td>
+                <td></td>
+                    <td></td>
+                        <td></td>
                             <td>
                                 <button class="bg-white border-blue-700 hover:">
-                                    <a href="../roles/update.blade.php?id=<?=
-                                        $row['id'] ?>">
+                                    <a href="../roles/update.blade.php">
                                         <i class="bi bi-pencil"></i>
                                         Edit Role
                                     </a>
                                 </button>
                             </td>
                         </tr>
-                        <?php
-                            }
-                            // Free result set
-                            unset($result);
-                            } else {
-                            echo"No records matching your query were found." ;
-                            }
-                            ?>
+
                         </tbody>
                     </table>
                     @endsection

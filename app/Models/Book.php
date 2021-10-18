@@ -21,11 +21,5 @@ class Book extends Model
         'publishDate',
     ];
 
-    /**
-     * Attributes to whom this class has a parent relationship to
-     */
-    public function books()
-    {
-        return $this->hasMany(Book::class);
-    }
+
 }

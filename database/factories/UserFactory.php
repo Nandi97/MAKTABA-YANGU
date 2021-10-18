@@ -24,6 +24,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'avatar' => $this->faker->imageUrl('https://image.shutterstock.com/image-vector/person-gray-photo-placeholder-man-260nw-1406263799.jpg'),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
