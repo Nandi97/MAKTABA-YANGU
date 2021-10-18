@@ -1,4 +1,8 @@
-@include('/resources/views/layouts/header.blade.php')
+@extends('layouts.main')
+
+@section('title', 'Users')
+
+@section('content')
 
 <div class="flex justify-between flex-wrap md:flex-nowrap items-center pt-3 pb-2
     mb-3 border-b">
@@ -61,4 +65,5 @@
                             ?>
                         </tbody>
                     </table>
-                    @include('/resources/views/layouts/footer.blade.php')
+                    @endsection
+

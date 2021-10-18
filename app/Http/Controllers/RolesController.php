@@ -46,7 +46,7 @@ class RolesController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('roles.index');
     }
 
     /**
