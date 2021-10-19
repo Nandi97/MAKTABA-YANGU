@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -14,8 +16,9 @@ class UsersController extends Controller
     public function index()
     {
         $title = 'Users';
+        $users = User::all();
 
-        return view('users/index', compact(['title']));
+        return view('users.index', compact(['title','users']));
     }
 
     /**
@@ -25,7 +28,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+
+        return view('users.create', compact(['roles']));
     }
 
     /**

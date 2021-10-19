@@ -27,7 +27,7 @@ class BookFactory extends Factory
             'title'=> $this->faker->title(),
             'author' => $this->faker->name(),
             'description' => $this->faker->text(),
-            'cover' => $this->faker->imageUrl('https://d1csarkz8obe9u.cloudfront.net/posterpreviews/vintage-book-cover-template-design-fe1040a9952994208fcae6066ab78f2b_screen.jpg?ts=1561553736'),
+            'cover' => $this->faker->imageUrl($width = 640, $height = 480),
             'publishDate'=> $this->faker->date(),
 
             'remember_token' => Str::random(10),
