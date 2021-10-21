@@ -9,28 +9,26 @@ use Illuminate\Support\Str;
 
 class BookFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Book::class;
+  /**
+   * The name of the factory's corresponding model.
+   *
+   * @var string
+   */
+  protected $model = Book::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
-    {
-        return [
-            'title'=> $this->faker->title(),
-            'author' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'cover' => $this->faker->imageUrl($width = 640, $height = 480),
-            'publishDate'=> $this->faker->date(),
-
-            'remember_token' => Str::random(10),
-        ];
-    }
+  /**
+   * Define the model's default state.
+   *
+   * @return array
+   */
+  public function definition()
+  {
+    return [
+      'title' => $this->faker->title(),
+      'author' => $this->faker->name(),
+      'description' => $this->faker->text(),
+      'cover' => $this->faker->imageUrl($width = 640, $height = 480),
+      'publishDate' => $this->faker->date(),
+    ];
+  }
 }

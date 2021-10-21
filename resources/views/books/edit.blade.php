@@ -3,9 +3,9 @@
 
 <form
   class="card-body form-control card px-10 bg-base-100 w-full"
-  action="/books"
+  action="/books/{{ $book->id }}"
   method="POST"
 >
-  @csrf @include('books.form')
+  @method('put') @csrf @include('books.form')
 </form>
 @endsection

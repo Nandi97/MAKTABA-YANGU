@@ -28,9 +28,10 @@ class UsersController extends Controller
      */
     public function create()
     {
+        $title = 'Create';
         $roles = Role::all();
 
-        return view('users.create', compact(['roles']));
+        return view('users.create', compact(['roles','title']));
     }
 
     /**
@@ -41,16 +42,36 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Validate form input data
+        $request->validate([
+            'name' => 'required',
+            'phoneNo' => 'required',
+            'address' => 'required',
+            'roleId' => 'required',
+            'avatar' => 'required',
+        ]);
+
+        // Create a reference to a new Role object
+        $user = new User();
+
+        // Populate the new Role object with form input data
+        $user->name = $request->name;
+        $user->phoneNo = $request->phoneNo;
+        $user->address = $request->address;
+        $user->roleId = $request->roleId;
+        $user->avatar = $request->avatar;
+
+        // Redirect user back to the Roles page
+        return redirect('users');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         return view('users.show');
     }
@@ -58,33 +79,54 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $title = 'Update';
+
+        return view('users.edit', compact(['user','title']));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        return view('users.update', compact('user'));
+        $request->validate([
+            'name' => 'required',
+            'phoneNo' => 'required',
+            'address' => 'required',
+            'roleId' => 'required',
+            'avatar' => 'required',
+        ]);
+
+        // Populate the User object with form input data
+        $user->name = $request->name;
+        $user->phoneNo = $request->phoneNo;
+        $user->address = $request->address;
+        $user->roleId = $request->roleId;
+        $user->avatar = $request->avatar;
+
+          // Update the Role object into the database
+        $user->save();
+
+           // Redirect user back to the Roles page
+        return redirect('users');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
     }

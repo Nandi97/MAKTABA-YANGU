@@ -19,9 +19,11 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-
+// Roles routes
 Route::resource('roles', RolesController::class);
-// Route::put('roles/{role}', [RolesController::class, 'update']);
 
+// Users routes
 Route::resource('users', UsersController::class);
+
+// Books routes
 Route::resource('books', BooksController::class);

@@ -15,8 +15,9 @@ class BooksController extends Controller
     public function index()
     {
         $title = 'Books';
+        $books = Book::all();
 
-        return view('books/index', compact(['title']));
+        return view('books/index', compact(['title','books']));
     }
 
     /**
@@ -26,18 +27,44 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $title = 'Create';
+
+        return view('books.create', compact(['title']));
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param \App\Models\Book
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        // Validate form input
+        $request->validate([
+      'title' => 'required',
+      'author' => 'required',
+      'description' => 'required',
+      'cover' => 'required',
+      'publishDate' => 'required|date',
+    ]);
+
+        // Create a reference to a new Book object
+        $book = new Book();
+
+        // Populate the new Book object with the form input data
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->description = $request->description;
+        $book->cover = $request->cover;
+        $book->publishDate = $request->publishDate;
+
+        // Save the new Book object into the books table in the database
+        $book->save();
+
+        // Redirect the user to the books index page
+        return redirect('books');
     }
 
     /**
@@ -48,7 +75,9 @@ class BooksController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        $title = 'Show';
+        //Show book
+        return view('books.show', compact(['title','book']));
     }
 
     /**
@@ -59,7 +88,9 @@ class BooksController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $title = 'Update';
+
+        return view('books.update', compact(['title', 'book']));
     }
 
     /**
