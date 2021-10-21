@@ -30,8 +30,8 @@ text-neutral-content shadow-lg bg-neutral rounded-box h-full top-0 p-2 m-0 z-40"
     </div>
 
     <div>
-        <ul class="menu flex flex-col p-4 pt-2 compact">
-            <li class="hover:bg-green-500">
+        <ul class="menu flex flex-col compact gap-4 pt-3">
+            <li class="rounded-full py-1 px-3 hover:bg-green-500">
                 <a href="/" class="capitalize">
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block
                         w-5 mr-2
@@ -47,7 +47,7 @@ text-neutral-content shadow-lg bg-neutral rounded-box h-full top-0 p-2 m-0 z-40"
                         Dashboard
                     </a>
                 </li>
-                <li class="hover:bg-green-500">
+                <li class="rounded-full py-1 px-3 hover:bg-green-500">
                     <a href="/books" class="capitalize">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="inline-block w-5
@@ -68,7 +68,7 @@ text-neutral-content shadow-lg bg-neutral rounded-box h-full top-0 p-2 m-0 z-40"
                             Books
                         </a>
                     </li>
-                    <li class="hover:bg-green-500">
+                    <li class="rounded-full py-1 px-3 hover:bg-green-500">
                         <a href="/users" class="capitalize">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="inline-block
@@ -87,7 +87,7 @@ text-neutral-content shadow-lg bg-neutral rounded-box h-full top-0 p-2 m-0 z-40"
                                 Users
                             </a>
                         </li>
-                        <li class="hover:bg-green-500">
+                        <li class="rounded-full py-1 px-3 hover:bg-green-500">
                             <a class="nav-link" href="#" class="pt-5 capitalize">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="inline-block w-5 mr-2

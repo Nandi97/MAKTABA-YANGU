@@ -90,7 +90,7 @@ class BooksController extends Controller
     {
         $title = 'Update';
 
-        return view('books.update', compact(['title', 'book']));
+        return view('books/edit', compact(['title', 'book']));
     }
 
     /**
@@ -102,7 +102,26 @@ class BooksController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        return view('books.update', compact('book'));
+        $request->validate([
+          'title'=>'required',
+          'author' => 'required',
+          'description' => 'required',
+          'cover' => 'required',
+          'publishDate' => 'required|date',
+        ]);
+
+        // Populate the new Book object with the form input data
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->description = $request->description;
+        $book->cover = $request->cover;
+        $book->publishDate = $request->publishDate;
+
+        // Save the new Book object into the books table in the database
+        $book->save();
+
+        // Redirect the user to the books index page
+        return redirect('books');
     }
 
     /**

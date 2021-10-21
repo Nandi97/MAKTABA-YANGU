@@ -1,6 +1,9 @@
 @extends('layouts.main') @section('title', 'Users') @section('content')
 <div
   class="
+    inset-x-0
+    z-50
+    sticky
     flex
     justify-between
     flex-wrap
