@@ -1,14 +1,17 @@
-<div class="w-full sticky top-0 z-30 bg-white">
-  <header class="w-full sticky top-0 px-1 py-2 m-0 z-40">
+<div class="w-full sticky top-0 z-30 md:bg-white bg-neutral">
+  <header class="w-full sticky top-0 md:px-1 px-0 md:py-2 py-0 m-0 z-40">
     <div
       class="
+        flex
+        items-center
+        md:p-2
+        p-0
         justify-end
-        navbar
         mb-2
         shadow-lg
         bg-neutral
         text-neutral-content
-        rounded-box
+        md:rounded-box
         text-right
       "
     >
