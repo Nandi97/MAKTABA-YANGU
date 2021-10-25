@@ -14,6 +14,7 @@
         />
       </div>
     </div>
+
     <div class="col-span-1">
       <div class="">
         <label for="phone_no" class="label">Phone Number:</label>
@@ -23,7 +24,7 @@
           id="phone_no"
           class="input input-bordered"
           placeholder="Phone"
-          value="{{ isset($user->phoneNo) ? $user->phone_no : old('phone_no') }}"
+          value="{{ isset($borrower->phone_no) ? $borrower->phone_no : old('phone_no') }}"
           required
         />
       </div>
@@ -40,12 +41,13 @@
           id="email"
           class="input input-bordered"
           placeholder="Email"
-          value="{{ isset($user->email) ? $user->email : old('email') }}"
+          value="{{ isset($borrower->email) ? $borrower->email : old('email') }}"
           required
         />
       </div>
     </div>
   </div>
+
   <div class="grid-cols-1">
     <div class="col-span-1">
       <div class="form-control">
@@ -56,20 +58,16 @@
           id="avatar"
           class="input input-bordered"
           placeholder="Avatar URL"
-          value="{{ isset($user->avatar) ? $user->avatar : old('avatar') }}"
+          value="{{ isset($borrower->avatar) ? $borrower->avatar : old('avatar') }}"
           required
         />
       </div>
     </div>
   </div>
+
   <div class="flex flex-row card-actions">
-    <button
-      class="btn btn-outline btn-primary btn-sm"
-      type="submit"
-      name="submit"
-      id="submit"
-    >
-      BUTTON TEXT
+    <button class="btn btn-outline btn-primary btn-sm" type="submit">
+      {{ $title }} Borrower
     </button>
     <a href="/borrowers" class="btn btn-secondary btn-sm pl-3"> Cancel </a>
   </div>

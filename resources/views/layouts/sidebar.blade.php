@@ -38,7 +38,7 @@
         md:rounded-t-lg
       "
     >
-      <div class="flex-1 px-4 py-3 mx-2 hidden">
+      <div class="flex-1 px-4 py-3 mx-2">
         <a href="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@
                             1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
               />
             </svg>
-            <p class="hidden">Dashboard</p>
+            <p>Dashboard</p>
           </a>
         </li>
         <li
@@ -133,7 +133,7 @@
                                 16.5 18c-1.746 0-3.332.477-4.5 1.253"
               />
             </svg>
-            <p class="hidden">Books</p>
+            <p>Books</p>
           </a>
         </li>
         <li
@@ -167,7 +167,7 @@
                                     0z"
               />
             </svg>
-            <p class="hidden">Users</p>
+            <p>Users</p>
           </a>
         </li>
         <li
@@ -201,7 +201,7 @@
                                     0z"
               />
             </svg>
-            <p class="hidden">Borrowers</p>
+            <p>Borrowers</p>
           </a>
         </li>
         <li
@@ -237,7 +237,7 @@
                                         01-2 2z"
               />
             </svg>
-            <p class="hidden">Reports</p>
+            <p>Reports</p>
           </a>
         </li>
       </ul>

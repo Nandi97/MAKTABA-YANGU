@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Borrower;
 use Illuminate\Http\Request;
 
-class BorrowerController extends Controller
+class BorrowersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class BorrowerController extends Controller
         $title = 'Borrowers';
         $borrowers = Borrower::all();
 
-        return view('borrower.index', compact(['title','borrowers']));
+        return view('borrowers/index', compact(['title','borrowers']));
     }
 
     /**
@@ -35,6 +35,7 @@ class BorrowerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param \App\Models\Borrower
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -48,16 +49,19 @@ class BorrowerController extends Controller
           'phone_no' => 'required',
       ]);
 
-        // Create a reference to a new Role object
+        // Create a reference to a new Borrower object
         $borrower = new Borrower();
 
-        // Populate the new Role object with form input data
+        // Populate the new Borrower object with form input data
         $borrower->name = $request->name;
         $borrower->avatar = $request->avatar;
         $borrower->email = $request->email;
-        $borrower->phoneNo = $request->phoneNo;
+        $borrower->phone_no = $request->phone_no;
 
-        // Redirect user back to the Roles page
+        // Save the new Borrower object into the borrowers table in the database
+        $borrower->save();
+
+        // Redirect user back to the Borrowers page
         return redirect('borrowers');
     }
 
@@ -69,7 +73,7 @@ class BorrowerController extends Controller
      */
     public function show(Borrower $borrower)
     {
-        return view('borrowers.show');
+        return view('borrowers.show', compact(['borrower']));
     }
 
     /**
@@ -82,7 +86,7 @@ class BorrowerController extends Controller
     {
         $title = 'Update';
 
-        return view('borrowers.edit', compact(['borrower','title']));
+        return view('borrowers/edit', compact(['borrower','title']));
     }
 
     /**
@@ -104,17 +108,16 @@ class BorrowerController extends Controller
 
 
 
-        // Populate the new Role object with form input data
+        // Populate the new Borrower object with form input data
         $borrower->name = $request->name;
         $borrower->avatar = $request->avatar;
         $borrower->email = $request->email;
-        $borrower->phoneNo = $request->phoneNo;
+        $borrower->phone_no = $request->phone_no;
 
-        // Update the Role object into the database
+        // Update the Borrower object into the database
         $borrower->save();
 
-
-        // Redirect user back to the Roles page
+        // Redirect user back to the Borrowers page
         return redirect('borrowers');
     }
 

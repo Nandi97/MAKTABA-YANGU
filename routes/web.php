@@ -2,6 +2,7 @@
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BorrowersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,6 @@ Route::resource('users', UsersController::class);
 
 // Books routes
 Route::resource('books', BooksController::class);
+
+// Borrowers routes
+Route::resource('borrowers', BorrowersController::class);

@@ -18,7 +18,7 @@ class UsersController extends Controller
         $title = 'Users';
         $users = User::all();
 
-        return view('users.index', compact(['title','users']));
+        return view('users/index', compact(['title','users']));
     }
 
     /**
@@ -45,7 +45,6 @@ class UsersController extends Controller
         // Validate form input data
         $request->validate([
             'name' => 'required',
-            'phoneNo' => 'required',
             'email' => 'required',
             'roleId' => 'required',
             'avatar' => 'required',
@@ -56,10 +55,12 @@ class UsersController extends Controller
 
         // Populate the new Role object with form input data
         $user->name = $request->name;
-        $user->phoneNo = $request->phoneNo;
         $user->email = $request->email;
         $user->roleId = $request->roleId;
         $user->avatar = $request->avatar;
+
+        // Save the new Borrower object into the borrowers table in the database
+        $user->save();
 
         // Redirect user back to the Roles page
         return redirect('users');
@@ -73,7 +74,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show');
+        return view('users.show', compact(['user']));
     }
 
     /**
@@ -100,7 +101,6 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phoneNo' => 'required',
             'email' => 'required',
             'roleId' => 'required',
             'avatar' => 'required',
@@ -108,7 +108,6 @@ class UsersController extends Controller
 
         // Populate the User object with form input data
         $user->name = $request->name;
-        $user->phoneNo = $request->phoneNo;
         $user->email = $request->email;
         $user->roleId = $request->roleId;
         $user->avatar = $request->avatar;

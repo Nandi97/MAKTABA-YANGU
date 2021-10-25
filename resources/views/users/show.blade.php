@@ -1,70 +1,92 @@
-@extends('layouts.main')
-@section('title', 'Users')
-@section('content')
+@extends('layouts.main') @section('title', 'Users') @section('content')
 
-<div class="flex justify-between flex-wrap md:flex-nowrap
-    items-center pt-3 pb-2 mb-3 border-b w-full">
-    <h1 class="h2">{{ $user->id->name }}</h1>
+<div
+  class="
+    flex
+    justify-between
+    flex-wrap
+    md:flex-nowrap
+    items-center
+    pt-3
+    pb-2
+    mb-3
+    border-b
+    w-full
+  "
+>
+  <h1 class="h2">{{ $user->name }}</h1>
 
-    <div class="mb-2 mb-md-0">
-        <div class="btn-group m-2">
-            <a href="/users" class="btn btn-sm btn-secondary btn-outline">
-                <i class="bi bi-arrow-left-short"></i>
-            </a>
-            <a href="/users.create" class="btn btn-sm btn-primary btn-outline">
-                <i class="bi bi-plus"></i>
-            </a>
-            <a href="/users/{{ $user->id }}/update" class="btn btn-sm btn-dark
-                btn-outline">
-                <i class="bi bi-pencil-square"></i>
-            </a>
-            <button type="button" class="btn btn-sm btn-outline btn-warning">
-                <i class="bi bi-trash"></i>
-            </button>
-        </div>
+  <div class="mb-2 mb-md-0">
+    <div class="btn-group m-2">
+      <a href="/users" class="btn btn-sm btn-secondary btn-outline">
+        <i class="bi bi-arrow-left-short"></i>
+      </a>
+      <a href="/users/create" class="btn btn-sm btn-primary btn-outline">
+        <i class="bi bi-plus"></i>
+      </a>
+      <a
+        href="/users/{{ $user->id }}/edit"
+        class="btn btn-sm btn-dark btn-outline"
+      >
+        <i class="bi bi-pencil-square"></i>
+      </a>
+      <button type="button" class="btn btn-sm btn-outline btn-warning">
+        <i class="bi bi-trash"></i>
+      </button>
     </div>
+  </div>
 </div>
 
 <div class="grid grid-rows-1">
-    <div class="col-span-12 md:col-span-4">
-        <div class="card mb-3 image-full">
-            <figure>
-                <img src="{{ $avatar }}" alt="Cover Image" class="card-img-top">
-            </figure>
-        </div>
+  <div class="col-span-12 md:col-span-4">
+    <div class="card mb-3 image-full">
+      <figure>
+        <img src="{{ $user->avatar }}" alt="Cover Image" class="card-img-top" />
+      </figure>
     </div>
-    <div class="col-span-12 md:col-span-8">
-        <div class="card pb-0">
-            <table class="table mb-0">
-                <tr>
-                    <td>
-                        <i class="bi bi-person-circle text-primary"></i>
-                        {{ $name }}
-                    </td>
-                    <td>
-                        <i class="bi bi-telephone text-primary"></i>
-                        {{ $phoneNo }}
-                    </td>
-                    <td>
-                        <i class="bi bi-person-bounding-box text-primary"></i>
-                        {{ $user->role->name }}
-                    </td>
-                </tr>
+  </div>
+  <div class="col-span-12 md:col-span-8">
+    <div class="card pb-0">
+      <table class="table mb-0">
+        <tr>
+          <td>
+            <i class="bi bi-person-circle text-primary"></i>
+            {{ $user->name }}
+          </td>
+          <td>
+            <i class="bi bi-telephone text-primary"></i>
+            {{ $user->phoneNo }}
+          </td>
+          <td>
+            <i class="bi bi-person-bounding-box text-primary"></i>
+            {{ $user->role->name }}
+          </td>
+        </tr>
 
-                <tr>
-                    <td colspan="3">
-                        <i class="bi bi-geo-alt text-primary"></i>
-                        {{ $address }}
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <tr>
+          <td colspan="3">
+            <i class="bi bi-geo-alt text-primary"></i>
+            {{ $user->email }}
+          </td>
+        </tr>
+      </table>
     </div>
+  </div>
 </div>
 
-<div class="lex justify-content-between flex-wrap flex-md-nowrap
-    align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">User does not exist!</h1>
+<div
+  class="
+    lex
+    justify-content-between
+    flex-wrap flex-md-nowrap
+    align-items-center
+    pt-3
+    pb-2
+    mb-3
+    border-bottom
+  "
+>
+  <h1 class="h2">User does not exist!</h1>
 </div>
 
 @endsection

@@ -83,7 +83,7 @@
       name="submit"
       id="submit"
     >
-      BUTTON TEXT
+    {{ $title }} User
     </button>
     <a href="/users" class="btn btn-secondary btn-sm pl-3"> Cancel </a>
   </div>
