@@ -22,9 +22,5 @@ class RoleSeeder extends Seeder
             'name' => 'Librarian',
             'description' => 'Can create, edit and delete books and students'
         ]);
-        DB::table('roles')->insert([
-            'name' => 'Student',
-            'description' => 'Can borrow and return books'
-        ]);
     }
 }

@@ -42,11 +42,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-         // Validate form input data
+        // Validate form input data
         $request->validate([
             'name' => 'required',
             'phoneNo' => 'required',
-            'address' => 'required',
+            'email' => 'required',
             'roleId' => 'required',
             'avatar' => 'required',
         ]);
@@ -57,7 +57,7 @@ class UsersController extends Controller
         // Populate the new Role object with form input data
         $user->name = $request->name;
         $user->phoneNo = $request->phoneNo;
-        $user->address = $request->address;
+        $user->email = $request->email;
         $user->roleId = $request->roleId;
         $user->avatar = $request->avatar;
 
@@ -101,7 +101,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => 'required',
             'phoneNo' => 'required',
-            'address' => 'required',
+            'email' => 'required',
             'roleId' => 'required',
             'avatar' => 'required',
         ]);
@@ -109,14 +109,14 @@ class UsersController extends Controller
         // Populate the User object with form input data
         $user->name = $request->name;
         $user->phoneNo = $request->phoneNo;
-        $user->address = $request->address;
+        $user->email = $request->email;
         $user->roleId = $request->roleId;
         $user->avatar = $request->avatar;
 
-          // Update the Role object into the database
+        // Update the Role object into the database
         $user->save();
 
-           // Redirect user back to the Roles page
+        // Redirect user back to the Roles page
         return redirect('users');
     }
 
