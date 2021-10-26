@@ -16,10 +16,10 @@
       border-b
     "
   >
-    <!-- Toopbar -->
+    <!-- Topbar -->
     <h2 class="card-title">{{ $book->title }}</h2>
 
-    <div class="flex flex-row mb-2 mb-md-0">
+    <div class="flex flex-row mb-2 md:mb-0">
       <div class="btn-group mr-2">
         <a href="/books" class="btn btn-sm btn-outline btn-secondary">
           <svg

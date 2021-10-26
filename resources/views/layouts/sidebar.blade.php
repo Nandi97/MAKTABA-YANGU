@@ -77,7 +77,11 @@
             outline-green-500
           "
         >
-          <a href="/" class="capitalize text-white">
+          <a
+            href="/"
+            class="capitalize text-white active nuxt-link-active"
+            aria-current="page"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="inline-block md:w-5 md:mr-2 h-6 stroke-current"
