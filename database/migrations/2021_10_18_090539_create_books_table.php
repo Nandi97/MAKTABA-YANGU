@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration
       $table->string('description');
       $table->string('cover');
       $table->date('publishDate');
+      $table->boolean('is_available')->default(1);
 
       $table->timestamps();
     });

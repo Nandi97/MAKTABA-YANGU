@@ -28,8 +28,4 @@ class Borrower extends Model
   {
     return $this->belongsToMany(Book::class);
   }
-  public function users()
-  {
-    return $this->belongsToMany(User::class);
-  }
 }

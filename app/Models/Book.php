@@ -19,6 +19,7 @@ class Book extends Model
     'description',
     'cover',
     'publishDate',
+    'is_available',
   ];
   /*
      * The borrowers that belong to this book
@@ -27,6 +28,7 @@ class Book extends Model
   {
     return $this->belongsToMany(Borrower::class);
   }
+
   public function users()
   {
     return $this->belongsToMany(User::class);

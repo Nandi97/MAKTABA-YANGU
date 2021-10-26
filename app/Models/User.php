@@ -51,12 +51,9 @@ class User extends Authenticatable
   {
     return $this->belongsTo(Role::class);
   }
+
   public function books()
   {
     return $this->belongsToMany(Book::class);
-  }
-  public function borrowers()
-  {
-    return $this->belongsToMany(Borrower::class);
   }
 }
