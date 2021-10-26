@@ -7,19 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    use HasFactory;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
+  use HasFactory;
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var string[]
+   */
+  protected $fillable = [
+    'title',
+    'author',
+    'description',
+    'cover',
+    'publishDate',
+  ];
+  /*
+     * The borrowers that belong to this book
      */
-    protected $fillable = [
-        'title',
-        'author',
-        'description',
-        'cover',
-        'publishDate',
-    ];
-
-
+  public function borrowers()
+  {
+    return $this->belongsToMany(Borrower::class);
+  }
+  public function users()
+  {
+    return $this->belongsToMany(User::class);
+  }
 }
