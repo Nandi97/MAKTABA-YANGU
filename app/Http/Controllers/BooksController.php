@@ -78,9 +78,10 @@ class BooksController extends Controller
    */
   public function show(Book $book)
   {
-    $title = 'Show';
+    $users = User::all();
+    $borrowers = Borrower::all();
     //Show book
-    return view('books.show', compact(['title', 'book']));
+    return view('books.show', compact(['book', 'users', 'borrowers']));
   }
 
   /**
@@ -142,18 +143,39 @@ class BooksController extends Controller
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\User  $user
    * @param  \App\Models\Book  $book
-   * @param  \App\Models\Borrower  $borrower
    * @return \Illuminate\Http\Response
    */
-  public function lend(Request $request, Book $book, User $user, Borrower $borrower)
+  public function lend(Request $request, Book $book)
   {
-    //
+    // Update the book status to false to indicate book is unavailable
+    $book->is_available = 0;
+
+    $request->validate([
+      'lender_id' => 'required',
+      'borrower_id' => 'required',
+    ]);
+
+    // Create a reference to a new object
+    $book = new Book();
+
+    // Populate the new Book object with the form input data
+    $book->id->pivot->lender_id;
+    $book->id->pivot->borrower_id;
+    $book->id;
+
+    $book->save();
+
+
+    return redirect('books/' . $book->id);
   }
 
-  public function return(Request $request, Book $book, User $user, Borrower $borrower)
+  public function return(Request $request, Book $book)
   {
-    //
+    // Update the book's status to is_available
+    $book->is_available = 1;
+    $book->save();
+
+    return redirect('books/' . $book->id);
   }
 }

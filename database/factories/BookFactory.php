@@ -27,7 +27,6 @@ class BookFactory extends Factory
       'description' => $this->faker->text(),
       'cover' => $this->faker->imageUrl($width = 640, $height = 480),
       'publishDate' => $this->faker->date(),
-      'is_available' => $this->faker->boolean(),
     ];
   }
 }

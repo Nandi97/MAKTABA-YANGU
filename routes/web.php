@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+  return view('dashboard');
 });
 
 // Roles routes
@@ -28,6 +29,8 @@ Route::resource('users', UsersController::class);
 
 // Books routes
 Route::resource('books', BooksController::class);
+Route::post('books/{book}/lend', [BooksController::class, 'lend'])->name('books.lend');
+Route::post('books/{book}/return', [BooksController::class, 'return'])->name('books.return');
 
 // Borrowers routes
 Route::resource('borrowers', BorrowersController::class);

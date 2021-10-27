@@ -72,10 +72,7 @@
       </div>
 
       <div class="btn-group mr-2">
-        <a
-          href="/books/{{ $book->id }}/lend"
-          class="btn btn-sm btn-outline btn-success"
-        >
+        <div id="show-lend-form" class="btn btn-sm btn-outline btn-success">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -90,7 +87,28 @@
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-        </a>
+        </div>
+        <div class="btn btn-sm btn-outline btn-secondary">
+          <form action="/books/{{ $book->id }}/return" method="post">
+            @csrf
+            <button type="submit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
         <a href="/books/{{ $book->id }}/destroy" class="btn btn-sm btn-danger">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -141,6 +159,11 @@
             </p>
           </td>
         </tr>
+
+        <tr>
+          <td>Status</td>
+          <td>{{ $book->is_available }}</td>
+        </tr>
       </table>
       <table class="table w-full table-zebra">
         <tbody>
@@ -158,5 +181,25 @@
       </table>
     </div>
   </div>
-  @endsection
+
+  <div id="lend_book_form" class="modal">
+    <div class="modal-box">@include('books.lend')</div>
+  </div>
 </div>
+
+<script>
+  var lendForm = document.getElementById("lend_book_form");
+  var showLendBookFormBtn = document.getElementById("show-lend-form");
+  var hideLendBookFormBtn = document.getElementById("hide-lend-form");
+
+  showLendBookFormBtn.onclick = function () {
+    lendForm.classList.add("modal-open");
+    console.log("Show Lend Book Form");
+  };
+
+  hideLendBookFormBtn.onclick = function () {
+    lendForm.classList.remove("modal-open");
+    console.log("Hide Lend Book Form");
+  };
+</script>
+@endsection

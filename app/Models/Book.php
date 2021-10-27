@@ -26,11 +26,11 @@ class Book extends Model
      */
   public function borrowers()
   {
-    return $this->belongsToMany(Borrower::class);
+    return $this->belongsToMany(Borrower::class, 'book_borrower');
   }
 
   public function users()
   {
-    return $this->belongsToMany(User::class);
+    return $this->belongsToMany(User::class, 'book_borrower');
   }
 }

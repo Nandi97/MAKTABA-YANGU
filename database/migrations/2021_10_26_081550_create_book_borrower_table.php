@@ -25,6 +25,8 @@ class CreateBooksBorrowersTable extends Migration
       $table->unsignedBigInteger('book_id')->nullable();
       $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
 
+      $table->boolean('status')->default(0);
+
       $table->timestamps();
     });
   }
