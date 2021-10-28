@@ -6,6 +6,8 @@
 >
   @csrf
 
+  <input type="hidden" id="status" name="status" value="0" />
+
   <div class="mb-3">
     <div class="grid grid-cols-12">
       <div class="col-span-6 mr-2">

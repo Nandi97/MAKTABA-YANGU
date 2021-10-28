@@ -149,12 +149,11 @@ class BooksController extends Controller
    */
   public function lend(Request $request, Book $book, BookBorrower $bookBorrower)
   {
-    $request->status = 0;
-
     // Validate form input data
     $validator = Validator::make($request->all(), [
-      'lender_id' => 'required',
-      'borrower_id' => 'required',
+      'lender_id' => 'required|integer',
+      'borrower_id' => 'required|integer',
+      'status' => 'required|integer'
     ]);
 
     if ($validator->fails()) {
@@ -172,16 +171,15 @@ class BooksController extends Controller
     $book->save();
 
     // Create a new BookBorrower object
-    // $bookBorrower = new BookBorrower();
+    $bookBorrower = new BookBorrower();
 
-    // // Populate the bookBorrower attributes with the form input data
-    // $bookBorrower->lender_id = $request->lender_id;
-    // $bookBorrower->borrower_id = $request->borrower_id;
-    // $bookBorrower->book_id = $book->id;
-    // $bookBorrower->status = $request->status;
+    // Populate the bookBorrower attributes with the form input data
+    $bookBorrower->lender_id = $request->lender_id;
+    $bookBorrower->borrower_id = $request->borrower_id;
+    $bookBorrower->book_id = $book->id;
 
-    // // Save the new bookBorrower object in the database
-    // $bookBorrower->save();
+    // Save the new bookBorrower object in the database
+    $bookBorrower->save();
 
     return redirect('books/' . $book->id);
   }
