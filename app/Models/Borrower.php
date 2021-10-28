@@ -21,11 +21,12 @@ class Borrower extends Model
     'phone_no',
 
   ];
-  /*
-     * The books that belong to this borrower
-     */
-  public function books()
+
+  /**
+   * The bookBorrowers that belong to this User
+   */
+  public function bookBorrowers()
   {
-    return $this->belongsToMany(Book::class);
+    return $this->hasMany(BookBorrower::class);
   }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
   use HasFactory;
+
   /**
    * The attributes that are mass assignable.
    *
@@ -21,16 +22,12 @@ class Book extends Model
     'publishDate',
     'is_available',
   ];
+
   /*
      * The borrowers that belong to this book
      */
   public function borrowers()
   {
-    return $this->belongsToMany(Borrower::class, 'book_borrower');
-  }
-
-  public function users()
-  {
-    return $this->belongsToMany(User::class, 'book_borrower');
+    return $this->belongsToMany(Borrower::class, table: 'book_borrower', foreignPivotKey: 'book_id', relatedPivotKey: 'borrower_id')->withTimestamps()->as('book_borrower')->withPivot('status');
   }
 }

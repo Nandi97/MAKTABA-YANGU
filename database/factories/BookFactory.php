@@ -22,7 +22,7 @@ class BookFactory extends Factory
   public function definition()
   {
     return [
-      'title' => $this->faker->title(),
+      'title' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
       'author' => $this->faker->name(),
       'description' => $this->faker->text(),
       'cover' => $this->faker->imageUrl($width = 640, $height = 480),

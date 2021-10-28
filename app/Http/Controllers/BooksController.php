@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Borrower;
 use App\Models\Book;
+use App\Models\BookBorrower;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BooksController extends Controller
 {
@@ -50,7 +52,6 @@ class BooksController extends Controller
       'description' => 'required',
       'cover' => 'required',
       'publishDate' => 'required|date',
-      'is_available' => 'boolean',
     ]);
 
     // Create a reference to a new Book object
@@ -80,8 +81,9 @@ class BooksController extends Controller
   {
     $users = User::all();
     $borrowers = Borrower::all();
+    $bookBorrowers = BookBorrower::where('book_id', $book->id)->get();
     //Show book
-    return view('books.show', compact(['book', 'users', 'borrowers']));
+    return view('books.show', compact(['book', 'users', 'borrowers', 'bookBorrowers']));
   }
 
   /**
@@ -112,7 +114,6 @@ class BooksController extends Controller
       'description' => 'required',
       'cover' => 'required',
       'publishDate' => 'required|date',
-      'is_available' => 'boolean',
     ]);
 
     // Populate the new Book object with the form input data
@@ -146,35 +147,56 @@ class BooksController extends Controller
    * @param  \App\Models\Book  $book
    * @return \Illuminate\Http\Response
    */
-  public function lend(Request $request, Book $book)
+  public function lend(Request $request, Book $book, BookBorrower $bookBorrower)
   {
-    // Update the book status to false to indicate book is unavailable
-    $book->is_available = 0;
+    $request->status = 0;
 
-    $request->validate([
+    // Validate form input data
+    $validator = Validator::make($request->all(), [
       'lender_id' => 'required',
       'borrower_id' => 'required',
     ]);
 
-    // Create a reference to a new object
-    $book = new Book();
+    if ($validator->fails()) {
+      echo '<pre>';
+      echo var_dump($validator->fails());
+      echo '</pre>';
 
-    // Populate the new Book object with the form input data
-    $book->id->pivot->lender_id;
-    $book->id->pivot->borrower_id;
-    $book->id;
+      return redirect('books/' . $book->id)
+        ->withErrors($validator)
+        ->withInput();
+    }
 
+    // Update the book status to false to indicate book is unavailable
+    $book->is_available = 0;
     $book->save();
 
+    // Create a new BookBorrower object
+    // $bookBorrower = new BookBorrower();
+
+    // // Populate the bookBorrower attributes with the form input data
+    // $bookBorrower->lender_id = $request->lender_id;
+    // $bookBorrower->borrower_id = $request->borrower_id;
+    // $bookBorrower->book_id = $book->id;
+    // $bookBorrower->status = $request->status;
+
+    // // Save the new bookBorrower object in the database
+    // $bookBorrower->save();
 
     return redirect('books/' . $book->id);
   }
 
   public function return(Request $request, Book $book)
   {
+
     // Update the book's status to is_available
     $book->is_available = 1;
     $book->save();
+
+
+    $bookBorrower = BookBorrower::where('book_id', $book->id)->firstWhere('status', 0);
+    $bookBorrower->status = 1;
+    $bookBorrower->save();
 
     return redirect('books/' . $book->id);
   }

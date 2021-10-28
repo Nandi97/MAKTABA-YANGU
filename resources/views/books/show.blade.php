@@ -72,6 +72,7 @@
       </div>
 
       <div class="btn-group mr-2">
+        @if ($book->is_available == 1)
         <div id="show-lend-form" class="btn btn-sm btn-outline btn-success">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +89,7 @@
             />
           </svg>
         </div>
+        @else
         <div class="btn btn-sm btn-outline btn-secondary">
           <form action="/books/{{ $book->id }}/return" method="post">
             @csrf
@@ -109,6 +111,7 @@
             </button>
           </form>
         </div>
+        @endif
         <a href="/books/{{ $book->id }}/destroy" class="btn btn-sm btn-danger">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -137,52 +140,61 @@
       </figure>
     </div>
     <div class="card-body overflow-x-auto col-span-9">
-      <table class="table w-full">
+      <table class="table w-full table-zebra">
         <tr>
           <td><b>Author</b></td>
           <td><b>Originally Published On</b></td>
+          <td><b>Book Status</b></td>
         </tr>
 
         <tr>
           <td>{{ $book->author }}</td>
           <td>{{ $book->publishDate }}</td>
+          <td>
+            {{ $book->is_available > 0 ? 'Available' : 'Unavailable' }}
+          </td>
         </tr>
 
         <tr>
-          <td colspan="2"><b>Description</b></td>
+          <td colspan="3"><b>Description</b></td>
         </tr>
 
         <tr>
-          <td colspan="2" style="word-wrap: normal">
+          <td colspan="3" style="word-wrap: normal">
             <p>
               {{ $book->description }}
             </p>
           </td>
         </tr>
-
-        <tr>
-          <td>Status</td>
-          <td>{{ $book->is_available }}</td>
-        </tr>
       </table>
+
+      @if($bookBorrowers->count() > 0)
       <table class="table w-full table-zebra">
         <tbody>
           <tr>
-            <td><b>Borrower</b></td>
+            <td>
+              <b>Borrower{{ $bookBorrowers->count() != 1 ?'s':'' }}</b>
+            </td>
             <td><b>Borrowed on</b></td>
             <td><b>Returned on</b></td>
           </tr>
+          @foreach($bookBorrowers as $bookBorrower)
           <tr>
-            <td>user</td>
-            <td></td>
-            <td></td>
+            <td>{{ $bookBorrower->borrower->name }}</td>
+            <td>{{ $bookBorrower->created_at }}</td>
+            <td>{{ $bookBorrower->updated_at }}</td>
           </tr>
+          @endforeach
         </tbody>
       </table>
+      @endif
     </div>
   </div>
 
-  <div id="lend_book_form" class="modal">
+  <div
+    id="lend_book_form"
+    class="modal{{ $errors->has('lender_id') || $errors->has('borrower_id') ? ' modal-open' : '' }}"
+  >
     <div class="modal-box">@include('books.lend')</div>
   </div>
 </div>

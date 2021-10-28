@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBooksBorrowersTable extends Migration
+class CreateBookBorrowerTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,16 +13,16 @@ class CreateBooksBorrowersTable extends Migration
    */
   public function up()
   {
-    Schema::create('books_borrowers', function (Blueprint $table) {
+    Schema::create('book_borrower', function (Blueprint $table) {
       $table->id();
 
-      $table->unsignedBigInteger('lender_id')->nullable();
+      $table->unsignedBigInteger('lender_id');
       $table->foreign('lender_id')->references('id')->on('users')->onDelete('cascade');
 
-      $table->unsignedBigInteger('borrower_id')->nullable();
+      $table->unsignedBigInteger('borrower_id');
       $table->foreign('borrower_id')->references('id')->on('borrowers')->onDelete('cascade');
 
-      $table->unsignedBigInteger('book_id')->nullable();
+      $table->unsignedBigInteger('book_id');
       $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
 
       $table->boolean('status')->default(0);
@@ -38,6 +38,6 @@ class CreateBooksBorrowersTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('books_borrowers');
+    Schema::dropIfExists('book_borrower');
   }
 }
