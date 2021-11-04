@@ -1,5 +1,11 @@
 @import "tailwindcss/base";
-
 @import "tailwindcss/components";
-
 @import "tailwindcss/utilities";
+
+.sidebar-link {
+  @apply rounded-full md:py-1 md:px-3 pt-3 h-15 w-15
+}
+
+.sidebar-link > a {
+  @apply capitalize text-white
+}

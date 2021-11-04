@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Dashboard",
+    "path": "/",
+    "icon": "mdi:view-dashboard-outline"
+  },
+  {
+    "title": "Books",
+    "path": "/books",
+    "icon": "mdi:bookshelf"
+  },
+  {
+    "title": "Users",
+    "path": "/users",
+    "icon": "mdi:account-group-outline"
+  },
+  {
+    "title": "Borrowers",
+    "path": "/borrowers",
+    "icon": "mdi:account-multiple-minus-outline"
+  },
+  {
+    "title": "Reports",
+    "path": "/",
+    "icon": "mdi:file-chart-outline"
+  }
+]

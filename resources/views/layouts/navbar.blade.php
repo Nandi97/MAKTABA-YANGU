@@ -1,5 +1,5 @@
-<div class="w-full sticky top-0 z-30 md:bg-white bg-neutral">
-  <header class="w-full sticky top-0 md:px-1 px-0 md:py-2 py-0 m-0 z-40">
+<div class="flex flex-1 w-full sticky top-0 z-30 md:bg-white bg-neutral">
+  <header class="w-full sticky top-0 z-40">
     <div
       class="
         flex
@@ -8,11 +8,8 @@
         p-0
         justify-end
         mb-2
-        shadow-lg
         bg-neutral
-        text-neutral-content
-        md:rounded-box
-        text-right
+        text-neutral-content text-right
       "
     >
       <div class="flex-none hidden px-2 mx-2 lg:flex">
